@@ -62,6 +62,6 @@ public:
         delete[] array;
         return concat;
     }
-
+    ~ListSequence() override = default;
 };
 
