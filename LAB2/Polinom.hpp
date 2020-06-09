@@ -30,9 +30,9 @@ public:
         this->size = array.GetSize();
     }
 public:
-    Polynom<T> AddPoly(const Polynom<T>& poly2)
+    Polynom<T> operator +(const Polynom<T>& poly2)
     {
-        if (this->GetSize() <= 0 || poly2.GetSize() <= 0)
+        if (this->GetSize() == 0 || poly2.GetSize() == 0)
             throw std::length_error(NegativeSizeOfArray);
         int sumsize;
         if (this->GetSize() > poly2.GetSize())
@@ -53,8 +53,8 @@ public:
         return array2;
     }
 
-    Polynom<T> SubPoly(const Polynom<T>& poly2) {
-        if (this->GetSize() <= 0 || poly2.GetSize() <= 0)
+    Polynom<T> operator -(const Polynom<T>& poly2) {
+        if (this->GetSize() == 0 || poly2.GetSize() == 0)
             throw std::length_error(NegativeSizeOfArray);
         int sumsize;
         if (this->GetSize() > poly2.GetSize())
@@ -76,7 +76,7 @@ public:
     }
     T GetRezult(T* array)
     {
-        if (this->GetSize() <= 0)
+        if (this->GetSize() == 0)
             throw std::length_error(NegativeSizeOfArray);
         T rezult = (*this->a)[0];
         for (int i = 1; i < this->GetSize(); i++) rezult = rezult + (*this->a)[i] * array[i - 1];
@@ -103,13 +103,13 @@ public:
 public:
     void ScalarPoly(T count)
     {
-        if (this->GetSize() <= 0)
+        if (this->GetSize() == 0)
             throw std::length_error(NegativeSizeOfArray);
         for (int i = 0; i < this->size; i++) (*this->a)[i] = count * (*this->a)[i];
     }
     void Show()
     {
-        if (this->GetSize() <= 0)
+        if (this->GetSize() == 0)
             throw std::length_error(NegativeSizeOfArray);
         //std::cout << this->GetSize() << std::endl;
         for (int i = 0; i < this->size; i++)
