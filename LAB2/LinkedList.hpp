@@ -1,9 +1,9 @@
 #pragma once
 #include <stdexcept>
 
-constexpr const char* IndexOutOfRange = "Invalid range of index!";
-constexpr auto NegativeSizeOfArray = "Array size is negative!";
-constexpr auto ZeroSize = "The array is empty!";
+const auto IndexOutOfRange = "Invalid range of index!";
+const auto NegativeSizeOfArray = "Array size is negative!";
+
 
 template <class T>
 class LinkedList
@@ -19,7 +19,7 @@ private:
 public:
 	LinkedList(const T* items, const int count) : LinkedList()
 	{
-		if (count < 0) throw std::length_error(NegativeSizeOfArray);
+		if (count == 0) throw std::length_error(NegativeSizeOfArray);
 		this->size = count;
 		node** nodetmp = &this->head;
 		for (int i = 0; i < count; i++)
@@ -78,10 +78,34 @@ public:
 		return  newList;
 	}
 	int GetSize() const { return this->size; }
+	LinkedList<T>& operator = (const LinkedList<T>& list) {
+		if (this == &list) return *this;
+		node* node_temp;
+		node* node_ = this->head;
+		for (int i = 0; i < this->size; ++i)
+		{
+			node_temp = node_->next;
+			delete node_;
+			node_ = node_temp;
+		}
+		this->head = nullptr;
+		this->size = 0;
+		this->size = list.size;
+		node** node_tmp = &this->head;
+		node* node1 = list.head;
+		for (int i = 0; i < list.size; ++i)
+		{
+			*node_tmp = new node;
+			(*node_tmp)->items = node1->items;
+			node_tmp = &((*node_tmp)->next);
+			node1 = node1->next;
+		}
+		return *this;
+	}
 public:
 	void Append(T item) {
 		if (this->size == 0)
-			throw std::length_error(ZeroSize);
+			throw std::length_error(NegativeSizeOfArray);
 		node* current = new node;
 		current->items = item;
 		current->next = this->head;
@@ -91,7 +115,7 @@ public:
 	}
 	void Prepend(T item) {
 		if (this->size == 0)
-			throw std::length_error(ZeroSize);
+			throw std::length_error(NegativeSizeOfArray);
 		node* current = this->head;
 		while (current->next != nullptr)  current = current->next;
 		current->next = new node;
@@ -104,7 +128,7 @@ public:
 		if (index > this->size || index < 0)
 			throw std::out_of_range(IndexOutOfRange);
 		if (this->size == 0)
-			throw std::length_error(ZeroSize);
+			throw std::length_error(NegativeSizeOfArray);
 		if (index == 0) this->Append(item);
 		if (index == this->size - 1) this->Prepend(item);
 		if (index != 0 && index != this->size - 1) {
@@ -127,5 +151,17 @@ public:
 		LinkedList<T>* newnode = new LinkedList<T>(array, size);
 		delete[] array;
 		return  newnode;
+	}
+	~LinkedList() {
+		node* node_temp;
+		node* node_ = this->head;
+		for (int i = 0; i < this->size; ++i)
+		{
+			node_temp = node_->next;
+			delete node_;
+			node_ = node_temp;
+		}
+		this->head = nullptr;
+		this->size = 0;
 	}
 };
