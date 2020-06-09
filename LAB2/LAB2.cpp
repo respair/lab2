@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <complex>
 #include <cassert>
 #include "Polinom.hpp"
@@ -13,7 +13,7 @@ void TestAddPoly() {
 		Polynom<int> poly1(arr, 5);
 		Polynom<int> poly2(arr1, 5);
 		Polynom<int> poly3(arr2, 5);
-		assert(poly1.AddPoly(poly2) == poly3);
+		assert(poly1+(poly2) == poly3);
 	}
 	{
 		int arr[5] = { 1,0,2,3,-1 };
@@ -22,7 +22,7 @@ void TestAddPoly() {
 		Polynom<int> poly1(arr, 5);
 		Polynom<int> poly2(arr1, 4);
 		Polynom<int> poly3(arr2, 5);
-		assert(poly1.AddPoly(poly2) == poly3);
+		assert(poly1+(poly2) == poly3);
 	}
 	{
 		double arr3[5] = { 1.12, 0.01, 2.25, 3.21,-1 };
@@ -31,7 +31,7 @@ void TestAddPoly() {
 		Polynom<double> poly4(arr3, 5);
 		Polynom<double> poly5(arr4, 5);
 		Polynom<double> poly6(arr5, 5);
-		assert(poly4.AddPoly(poly5) == poly6);
+		assert(poly4+poly5 == poly6);
 	}
 	{
 		int arr[1] = { 0 };
@@ -40,7 +40,7 @@ void TestAddPoly() {
 		Polynom<int> poly1(arr, 1);
 		Polynom<int> poly2(arr1, 1);
 		Polynom<int> poly3(arr2, 1);
-		assert(poly1.AddPoly(poly2) == poly3);
+		assert(poly1+poly2 == poly3);
 	}
 	{
 		int arr[1] = { 7744444444444444 };
@@ -49,7 +49,7 @@ void TestAddPoly() {
 		Polynom<int> poly1(arr, 1);
 		Polynom<int> poly2(arr1, 1);
 		Polynom<int> poly3(arr2, 1);
-		assert(poly1.AddPoly(poly2) == poly3);
+		assert(poly1+poly2 == poly3);
 	}
 	{
 		std::complex<double> arr3[3] = { (1.12, 0.01),(2.25, 3.21),(-1.1,2) };
@@ -58,7 +58,7 @@ void TestAddPoly() {
 		Polynom<std::complex<double>> poly4(arr3, 3);
 		Polynom<std::complex<double>> poly5(arr4, 3);
 		Polynom<std::complex<double>> poly6(arr5, 3);
-		assert(poly4.AddPoly(poly5) == poly6);
+		assert(poly4+poly5 == poly6);
 	}
 	std::cout << "test Add: 1: OK!" << std::endl;
 	std::cout << "test Add: 2: OK!" << std::endl;
@@ -77,7 +77,7 @@ void TestSubPoly() {
 		Polynom<int> poly1(arr, 5);
 		Polynom<int> poly2(arr1, 5);
 		Polynom<int> poly3(arr2, 5);
-		assert(poly1.SubPoly(poly2) == poly3);
+		assert(poly1-poly2 == poly3);
 	}
 	{
 		int arr[4] = { 1,2,0,-1 };
@@ -86,7 +86,7 @@ void TestSubPoly() {
 		Polynom<int> poly1(arr, 4);
 		Polynom<int> poly2(arr1, 2);
 		Polynom<int> poly3(arr2, 4);
-		assert(poly1.SubPoly(poly2) == poly3);
+		assert(poly1-poly2 == poly3);
 	}
 	{
 		double arr3[2] = { 0.5, 1.3 };
@@ -95,7 +95,7 @@ void TestSubPoly() {
 		Polynom<double> poly4(arr3, 2);
 		Polynom<double> poly5(arr4, 2);
 		Polynom<double> poly6(arr5, 2);
-		assert(poly4.SubPoly(poly5) == poly6);
+		assert(poly4-poly5 == poly6);
 	}
 	{
 		double arr3[7] = { 0.511, 1.3, 6, 2, 0, 0.5, 3 };
@@ -104,7 +104,7 @@ void TestSubPoly() {
 		Polynom<double> poly4(arr3, 7);
 		Polynom<double> poly5(arr4, 7);
 		Polynom<double> poly6(arr5, 7);
-		assert(poly4.SubPoly(poly5) == poly6);
+		assert(poly4-poly5 == poly6);
 	}
 	{
 		int arr[1] = { 0 };
@@ -113,7 +113,7 @@ void TestSubPoly() {
 		Polynom<int> poly1(arr, 1);
 		Polynom<int> poly2(arr1, 1);
 		Polynom<int> poly3(arr2, 1);
-		assert(poly1.SubPoly(poly2) == poly3);
+		assert(poly1-poly2 == poly3);
 	}
 	{
 		int arr[1] = { 0 };
@@ -122,7 +122,7 @@ void TestSubPoly() {
 		Polynom<int> poly1(arr, 1);
 		Polynom<int> poly2(arr1, 1);
 		Polynom<int> poly3(arr2, 1);
-		assert(poly1.SubPoly(poly2) == poly3);
+		assert(poly1-poly2 == poly3);
 	}
 	{
 		std::complex<double> arr3[2] = { (1, 0),(0.5, 1.3) };
@@ -131,7 +131,7 @@ void TestSubPoly() {
 		Polynom<std::complex<double>> poly4(arr3, 2);
 		Polynom<std::complex<double>> poly5(arr4, 2);
 		Polynom<std::complex<double>> poly6(arr5, 2);
-		assert(poly4.SubPoly(poly5) == poly6);
+		assert(poly4-poly5 == poly6);
 	}
 	std::cout << "test Sub: 1: OK!" << std::endl;
 	std::cout << "test Sub: 2: OK!" << std::endl;
