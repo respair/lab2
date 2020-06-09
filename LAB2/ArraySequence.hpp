@@ -10,12 +10,12 @@ private:
 public:
 	ArraySequence(const int count) : Sequence<T>()
 	{
-		if (count <= 0) count = 1;
+		if (count == 0) throw std::length_error(NegativeSizeOfArray);;
 		this->dynamic_array = DynamicArray<T>(count);
 	}
 	ArraySequence(const T* items, const int count) : Sequence<T>()
 	{
-		if (count < 0)
+		if (count == 0)
 			throw std::length_error(NegativeSizeOfArray);
 		this->dynamic_array = DynamicArray<T>(items, count);
 	}
