@@ -1,9 +1,8 @@
 #pragma once
 #include <stdexcept>
 
-constexpr auto IndexOutOfRange = "Invalid range of index!";
-constexpr auto NegativeSizeOfArray = "Array size is negative!";
-constexpr auto ZeroSize = "The array is empty";
+const auto IndexOutOfRange = "Invalid range of index!";
+const auto NegativeSizeOfArray = "Array size is negative!";
 
 
 template <class T>
@@ -16,7 +15,7 @@ private:
 public:
 	DynamicArray(T* items, int count)
 	{
-		if (count < 0)
+		if (count == 0)
 			throw std::length_error(NegativeSizeOfArray);
 		this->items = new T[count];
 		this->itemsCheck = new bool[count];
@@ -29,7 +28,7 @@ public:
 
 	DynamicArray(const int size)
 	{
-		if (size < 0)
+		if (size == 0)
 			throw std::length_error(NegativeSizeOfArray);
 		this->items = new T[size];
 		this->itemsCheck = new bool[size];
@@ -40,7 +39,7 @@ public:
 
 	DynamicArray(const DynamicArray<T>& array)
 	{
-		if (array.size < 0)
+		if (array.size == 0)
 			throw std::length_error(NegativeSizeOfArray);
 		this->size = array.size;
 		this->items = new T[array.size];
@@ -69,7 +68,7 @@ public:
 	}
 	void Resize(int newSize)
 	{
-		if (this->size < 0 || newSize < 0)
+		if (this->size == 0 || newSize == 0)
 			throw std::length_error(NegativeSizeOfArray);
 		if (newSize > this->size) {
 			T* time = new T[newSize];
@@ -88,7 +87,7 @@ public:
 			this->size = newSize;
 			delete[] time;
 		}
-		if (newSize < this->size) {
+		if (newSize == this->size) {
 			T* time = new T[newSize];
 			for (int i = 0; i < newSize; i++)
 				time[i] = this->items[i];
