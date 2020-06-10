@@ -31,7 +31,7 @@ public:
 	}
 	LinkedList() : size(0), head(nullptr) {};
 	LinkedList(const LinkedList <T>& list) {
-                if (count <= 0) throw std::length_error(NegativeSizeOfArray);
+                if (list.size <= 0) throw std::length_error(NegativeSizeOfArray);
 		this->size = list.size;
 		node* nodecopy = list.head;
 		node** nodetmp = &this->head;
