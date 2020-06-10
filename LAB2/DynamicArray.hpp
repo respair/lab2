@@ -15,7 +15,7 @@ private:
 public:
 	DynamicArray(T* items, int count)
 	{
-		if (count == 0)
+		if (count <= 0)
 			throw std::length_error(NegativeSizeOfArray);
 		this->items = new T[count];
 		this->itemsCheck = new bool[count];
@@ -28,7 +28,7 @@ public:
 
 	DynamicArray(const int size)
 	{
-		if (size == 0)
+		if (size <= 0)
 			throw std::length_error(NegativeSizeOfArray);
 		this->items = new T[size];
 		this->itemsCheck = new bool[size];
@@ -39,7 +39,7 @@ public:
 
 	DynamicArray(const DynamicArray<T>& array)
 	{
-		if (array.size == 0)
+		if (array.size <= 0)
 			throw std::length_error(NegativeSizeOfArray);
 		this->size = array.size;
 		this->items = new T[array.size];
